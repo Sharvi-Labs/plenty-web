@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Privacy Policy · Plenty</title>
+<meta name="description" content="How Plenty collects, uses, protects, and deletes your data — written to match exactly what the product does." />
+<meta name="theme-color" content="#0B0A0D" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='15' fill='%23D4FF26'/%3E%3Ctext x='32' y='45' font-family='Verdana,Arial,sans-serif' font-size='36' font-weight='bold' text-anchor='middle' fill='%230B0A0D'%3EP%3C/text%3E%3C/svg%3E" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet" />
+<style>
+  /* ─────────────────────────────────────────────────────────
+     Plenty design tokens (from Design/refined, tokens v1.1)
+     ───────────────────────────────────────────────────────── */
+  :root {
+    --void:          #0B0A0D;
+    --paper-line:    rgba(0, 0, 0, 0.06);
+
+    --accent:        #D4FF26;
+    --accent-deep:   #B7D900;
+    --accent-soft:   rgba(212, 255, 38, 0.10);
+    --accent-line:   rgba(212, 255, 38, 0.30);
+
+    --on-void:       #FFFFFF;
+    --on-void-read:  rgba(255, 255, 255, 0.74);
+    --on-void-soft:  rgba(255, 255, 255, 0.65);
+    --on-void-mute:  rgba(255, 255, 255, 0.45);
+    --on-void-faint: rgba(255, 255, 255, 0.28);
+    --line:          rgba(255, 255, 255, 0.10);
+    --line-subtle:   rgba(255, 255, 255, 0.06);
+
+    --sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+    --mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+
+    --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--sans);
+    background: var(--void);
+    color: var(--on-void);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  ::selection { background: var(--accent); color: var(--void); }
+
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  .skip {
+    position: absolute; left: -9999px;
+    background: var(--accent); color: var(--void);
+    font-weight: 700; padding: 10px 16px; border-radius: 999px; z-index: 50;
+  }
+  .skip:focus { left: 16px; top: 16px; }
+
+  /* ─── Atmosphere ─── */
+  .atmosphere { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
+  .glow-top {
+    position: absolute; top: -320px; left: -180px; width: 780px; height: 780px;
+    background: radial-gradient(circle at center, rgba(255, 255, 255, 0.05) 0%, transparent 62%);
+  }
+  .grain {
+    position: absolute; inset: -50%; opacity: 0.20;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.06 0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  .hairline-top {
+    position: absolute; top: 0; left: 0; right: 0; height: 1px;
+    background: linear-gradient(90deg, transparent 0%, var(--accent-line) 28%, var(--accent-line) 72%, transparent 100%);
+    opacity: 0.7;
+  }
+
+  /* ─── Shell / header (matches index) ─── */
+  .shell {
+    position: relative; z-index: 1;
+    width: min(1160px, 100% - 48px);
+    margin: 0 auto;
+    display: flex; flex-direction: column; flex: 1;
+  }
+  .site-head { display: flex; align-items: center; justify-content: space-between; padding: 30px 0 0; }
+  .wordmark { display: inline-flex; align-items: center; gap: 11px; text-decoration: none; }
+  .wordmark .glyph {
+    width: 32px; height: 32px; border-radius: 9px;
+    background: var(--accent); color: var(--void);
+    display: grid; place-items: center;
+    font-weight: 800; font-size: 17px; letter-spacing: -0.02em;
+    box-shadow: 0 4px 18px rgba(212, 255, 38, 0.25);
+  }
+  .wordmark .name { font-size: 19px; font-weight: 700; letter-spacing: -0.02em; }
+  .head-contact {
+    font-family: var(--mono); font-size: 11px; font-weight: 500;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--on-void-mute); text-decoration: none;
+    padding: 9px 14px; border: 1px solid var(--line); border-radius: 999px;
+    transition: color 0.25s ease, border-color 0.25s ease;
+  }
+  .head-contact:hover { color: var(--on-void); border-color: rgba(255, 255, 255, 0.28); }
+
+  /* ─── Document column ─── */
+  .doc {
+    width: min(760px, 100%);
+    margin: 0 auto;
+    padding: clamp(48px, 8vh, 84px) 0 72px;
+    flex: 1;
+  }
+  .kicker {
+    font-family: var(--mono); font-size: 11px; font-weight: 700;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 18px;
+  }
+  .kicker a { color: var(--on-void-mute); text-decoration: none; font-weight: 500; }
+  .kicker a:hover { color: var(--on-void); }
+  .kicker .sep { color: var(--on-void-faint); margin: 0 8px; }
+
+  h1 {
+    font-size: clamp(32px, 5vw, 46px);
+    font-weight: 800; line-height: 1.06; letter-spacing: -0.035em;
+  }
+  .doc-meta {
+    display: flex; flex-wrap: wrap; gap: 8px 22px;
+    margin-top: 18px;
+    font-family: var(--mono); font-size: 11px; font-weight: 500;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--on-void-mute);
+  }
+  .doc-meta .dot { color: var(--accent); }
+
+  .doc-intro { margin-top: 30px; }
+
+  /* ─── Reading typography ─── */
+  .doc p, .doc li { font-size: 15.5px; line-height: 1.75; color: var(--on-void-read); }
+  .doc p + p { margin-top: 14px; }
+  .doc strong { color: var(--on-void); font-weight: 700; }
+  .doc a { color: var(--accent); text-decoration: none; border-bottom: 1px solid var(--accent-line); transition: border-color 0.2s ease; }
+  .doc a:hover { border-color: var(--accent); }
+
+  .doc ul { list-style: none; margin-top: 12px; }
+  .doc ul li { padding-left: 22px; position: relative; margin-top: 9px; }
+  .doc ul li::before {
+    content: ""; position: absolute; left: 2px; top: 0.72em;
+    width: 8px; height: 1.5px; background: var(--accent); opacity: 0.75;
+  }
+
+  section { margin-top: 54px; padding-top: 34px; border-top: 1px solid var(--line-subtle); }
+  section:first-of-type { border-top: none; padding-top: 0; }
+  .no {
+    display: block;
+    font-family: var(--mono); font-size: 11.5px; font-weight: 700;
+    letter-spacing: 0.1em; color: var(--accent);
+    margin-bottom: 10px;
+  }
+  h2 { font-size: 21.5px; font-weight: 800; letter-spacing: -0.025em; line-height: 1.25; }
+  h2 + p, h2 + ul, h2 + .tbl, h2 + .callout { margin-top: 16px; }
+  h3 { font-size: 15.5px; font-weight: 700; letter-spacing: -0.015em; margin: 26px 0 8px; }
+
+  /* ─── Callout ─── */
+  .callout {
+    background: var(--accent-soft);
+    border: 1px solid var(--accent-line);
+    border-radius: 16px;
+    padding: 16px 20px;
+    margin-top: 22px;
+  }
+  .callout p { color: var(--on-void); font-weight: 500; }
+
+  .quiet {
+    background: rgba(255, 255, 255, 0.035);
+    border: 1px solid var(--line-subtle);
+    border-radius: 16px;
+    padding: 16px 20px;
+    margin-top: 22px;
+  }
+
+  /* ─── Contents ─── */
+  .toc {
+    margin-top: 40px;
+    border: 1px solid var(--line-subtle);
+    border-radius: 18px;
+    padding: 20px 22px;
+    background: rgba(255, 255, 255, 0.025);
+  }
+  .toc-label {
+    font-family: var(--mono); font-size: 10.5px; font-weight: 700;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--on-void-mute); margin-bottom: 14px;
+  }
+  .toc ol { list-style: none; columns: 2; column-gap: 36px; }
+  .toc li { break-inside: avoid; margin-bottom: 9px; }
+  .toc a {
+    display: inline-flex; gap: 10px; align-items: baseline;
+    font-family: var(--mono); font-size: 12px; font-weight: 500;
+    color: var(--on-void-soft); text-decoration: none; border: none;
+    transition: color 0.2s ease;
+  }
+  .toc a:hover { color: var(--on-void); }
+  .toc .n { color: var(--accent); font-size: 10.5px; font-weight: 700; }
+
+  /* ─── Tables ─── */
+  .tbl {
+    overflow-x: auto;
+    border: 1px solid var(--line-subtle);
+    border-radius: 14px;
+    margin-top: 18px;
+    -webkit-overflow-scrolling: touch;
+  }
+  table { border-collapse: collapse; width: 100%; min-width: 560px; }
+  th {
+    font-family: var(--mono); font-size: 10px; font-weight: 700;
+    letter-spacing: 0.09em; text-transform: uppercase;
+    color: var(--on-void-mute); text-align: left;
+    padding: 12px 16px; border-bottom: 1px solid var(--line);
+    background: rgba(255, 255, 255, 0.03);
+    white-space: nowrap;
+  }
+  td {
+    font-size: 13.5px; line-height: 1.6; color: var(--on-void-read);
+    padding: 12px 16px; border-bottom: 1px solid var(--line-subtle);
+    vertical-align: top;
+  }
+  tr:last-child td { border-bottom: none; }
+  td strong { color: var(--on-void); font-weight: 700; }
+
+  /* ─── Footer ─── */
+  .site-foot {
+    border-top: 1px solid var(--line-subtle);
+    padding: 22px 0 26px;
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 16px; flex-wrap: wrap;
+  }
+  .site-foot, .site-foot a {
+    font-family: var(--mono); font-size: 10.5px; font-weight: 500;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--on-void-mute); text-decoration: none; border: none;
+  }
+  .site-foot a:hover { color: var(--on-void); }
+  .site-foot a[aria-current] { color: var(--accent); }
+  .foot-right { display: flex; gap: 26px; flex-wrap: wrap; }
+
+  /* ─── Entrance ─── */
+  .reveal { opacity: 0; transform: translateY(18px); animation: rise 0.9s var(--ease-out) forwards; }
+  .d1 { animation-delay: 0.05s; }
+  .d2 { animation-delay: 0.15s; }
+  .d3 { animation-delay: 0.25s; }
+  @keyframes rise { to { opacity: 1; transform: none; } }
+
+  @media (max-width: 640px) {
+    .toc ol { columns: 1; }
+  }
+  @media (max-width: 480px) {
+    .shell { width: calc(100% - 40px); }
+    .head-contact { display: none; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { animation: none; opacity: 1; transform: none; }
+    html { scroll-behavior: auto; }
+  }
+
+  /* ─── Print ─── */
+  @media print {
+    body { background: #fff; color: #111; }
+    .atmosphere, .site-head, .site-foot, .skip { display: none; }
+    .doc { padding: 0; width: 100%; }
+    .doc p, .doc li, td { color: #222; }
+    h1, h2, h3, .doc strong, .callout p, td strong { color: #000; }
+    .no, .kicker, .toc .n { color: #555; }
+    .doc a { color: #000; border-bottom: 1px solid #999; }
+    .callout, .quiet, .toc, .tbl { border-color: #ccc; background: none; }
+    th { color: #555; background: none; border-color: #ccc; }
+    td { border-color: #e5e5e5; }
+    section { border-color: #e5e5e5; }
+  }
+</style>
+</head>
+<body>
+
+<a class="skip" href="#policy">Skip to content</a>
+
+<div class="atmosphere" aria-hidden="true">
+  <div class="glow-top"></div>
+  <div class="grain"></div>
+  <div class="hairline-top"></div>
+</div>
+
+<div class="shell">
+
+  <header class="site-head reveal d1">
+    <a class="wordmark" href="./" aria-label="Plenty home">
+      <span class="glyph" aria-hidden="true">P</span>
+      <span class="name">Plenty</span>
+    </a>
+    <a class="head-contact" href="mailto:arsudesandip4@gmail.com">Get in touch</a>
+  </header>
+
+  <main class="doc" id="policy">
+
+    <div class="reveal d2">
+      <p class="kicker"><a href="./">Plenty</a><span class="sep">·</span>Legal</p>
+      <h1>Privacy Policy</h1>
+      <div class="doc-meta">
+        <span>Effective <span class="dot">·</span> 8 July 2026</span>
+        <span>Applies to <span class="dot">·</span> the Plenty app &amp; this website</span>
+      </div>
+
+      <!-- TODO: replace "an independent software developer based in India" with the legal entity name and registered address once available. -->
+      <div class="doc-intro">
+        <p>Plenty is an expense-tracking app operated by an independent software developer based in India (“Plenty”, “we”, “us”). This policy explains what personal data we collect through the Plenty mobile app and our website waitlist, why we collect it, who processes it on our behalf, and the rights you have — including under the EU/UK General Data Protection Regulation (GDPR) and India’s Digital Personal Data Protection Act, 2023 (DPDP Act). Under the DPDP Act, the operator of Plenty is the Data Fiduciary for your data.</p>
+      </div>
+
+      <div class="callout">
+        <p>We wrote this policy to match what the product actually does. If something is not listed here, we do not do it.</p>
+      </div>
+
+      <p style="margin-top: 22px;">Questions, any time: <a href="mailto:arsudesandip4@gmail.com">arsudesandip4@gmail.com</a>.</p>
+    </div>
+
+    <nav class="toc reveal d3" aria-label="Contents">
+      <p class="toc-label">Contents</p>
+      <ol>
+        <li><a href="#collect"><span class="n">01</span>What we collect</a></li>
+        <li><a href="#purposes"><span class="n">02</span>Why we process your data</a></li>
+        <li><a href="#ai"><span class="n">03</span>AI processing</a></li>
+        <li><a href="#processors"><span class="n">04</span>Who processes data for us</a></li>
+        <li><a href="#regions"><span class="n">05</span>Where data is processed</a></li>
+        <li><a href="#retention"><span class="n">06</span>How long we keep data</a></li>
+        <li><a href="#rights"><span class="n">07</span>Your rights and controls</a></li>
+        <li><a href="#security"><span class="n">08</span>Security</a></li>
+        <li><a href="#children"><span class="n">09</span>Children</a></li>
+        <li><a href="#changes"><span class="n">10</span>Changes to this policy</a></li>
+        <li><a href="#contact"><span class="n">11</span>Contact</a></li>
+      </ol>
+    </nav>
+
+    <section id="collect">
+      <h2><span class="no">01</span>What we collect</h2>
+
+      <h3>Account and profile</h3>
+      <ul>
+        <li><strong>Sign-in identity.</strong> You sign in with Google (or, on iOS when available, Apple). We receive an identity token from that provider and store your account — including your <strong>email address</strong> and the identifiers the provider shares — with Supabase, our authentication and database provider.</li>
+        <li><strong>Profile details you give us during setup:</strong> the display name you type, your base currency, preferred language, and your device’s timezone.</li>
+      </ul>
+
+      <h3>Your expense data</h3>
+      <ul>
+        <li><strong>Expenses:</strong> amount, currency, category, merchant/vendor, item name, optional note, and the date and time of the expense.</li>
+        <li><strong>The raw input you used to log an expense:</strong> the short text you typed (up to 100 characters) or the transcript of what you said (up to 200 characters), stored alongside the expense so you can see what was captured.</li>
+        <li><strong>Receipt photos:</strong> if you photograph or pick a receipt, the image is resized and compressed on your device, <strong>EXIF metadata (including any location data) is stripped before upload</strong>, and the file is stored in a private storage bucket scoped to your account.</li>
+        <li><strong>Subscriptions you track</strong> in the app (e.g. “Netflix, monthly”: vendor, amount, billing interval, next due date).</li>
+        <li><strong>Derived figures:</strong> daily spending totals, spending-pattern signals (e.g. merchant visit cadence, category streaks), and one short AI-written insight about your own spending.</li>
+      </ul>
+
+      <h3>Voice input</h3>
+      <p>Speech-to-text happens through your device’s operating-system speech recognizer (Apple’s on iOS; on Android, your device’s speech service — typically Google’s). <strong>Plenty never receives or stores your audio.</strong> Depending on your device and language, the OS speech service may process audio on-device or on that provider’s servers under its own privacy policy. Only the resulting <strong>text transcript</strong> is sent to Plenty.</p>
+
+      <h3>AI processing records</h3>
+      <p>Each AI parsing or insight request is logged on our servers: the prompt text we sent, the structured result, token counts, latency, and estimated cost. Receipt image bytes are <strong>not</strong> stored in this log. Section 3 explains exactly what is sent to the AI provider, and when.</p>
+
+      <h3>Payments and subscription status</h3>
+      <p>Purchases are made through Google Play (and, if we launch on iOS, the App Store). <strong>We never see or store your card or bank details.</strong> We receive your subscription status (trial, active, expired, billing issue, and so on), product identifier, and billing-period dates via RevenueCat, our subscription-management provider, keyed to your account ID.</p>
+
+      <h3>Device and diagnostic data</h3>
+      <ul>
+        <li><strong>Product analytics (PostHog):</strong> a fixed set of product events — onboarding steps viewed, notification-permission choice, paywall shown/purchased/restored, sign-up completion steps, and expense-capture success/failure — with limited properties (capture source: text/voice/photo; error reason codes; paywall variant; entitlement status) tied to your account ID. We deliberately do <strong>not</strong> send expense text, notes, amounts, or merchant names to analytics, and <strong>session replay is switched off</strong>. PostHog also serves our feature flags.</li>
+        <li><strong>Crash and performance reports (Sentry):</strong> stack traces and diagnostic breadcrumbs from the app and our servers. Before sending, the app scrubs emails, IP addresses, usernames, internal IDs in URLs, and any field whose name suggests expense content (amount, note, merchant, and similar).</li>
+        <li><strong>Push token:</strong> if you enable notifications, an Expo push token identifying your device.</li>
+        <li><strong>Server logs:</strong> operational logs of API activity (request IDs, error details), with authorization headers, cookies, passwords, and tokens redacted before storage.</li>
+      </ul>
+
+      <h3>Website waitlist</h3>
+      <p>If you join the waitlist on our landing page, your <strong>email address</strong> is delivered to us via FormSubmit and used only to contact you about beta access. The landing page also loads fonts from Google Fonts, which sees your IP address as part of serving the font files.</p>
+
+      <div class="quiet">
+        <p><strong>What we do NOT collect:</strong> no contacts, no location, no bank or card account connections, no SMS reading, no advertising identifiers, no audio recordings, no session replay.</p>
+      </div>
+    </section>
+
+    <section id="purposes">
+      <h2><span class="no">02</span>Why we process your data</h2>
+      <div class="tbl" role="region" aria-label="Processing purposes" tabindex="0">
+        <table>
+          <thead>
+            <tr><th>Purpose</th><th>Data used</th><th>GDPR legal basis</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Create and secure your account</td><td>Sign-in identity, profile</td><td>Contract</td></tr>
+            <tr><td>Turn what you type, say, or photograph into structured expenses (AI parsing)</td><td>Raw input text, voice transcript, receipt image</td><td>Contract</td></tr>
+            <tr><td>Show your history, analytics, and spending insights</td><td>Expense data, derived signals</td><td>Contract</td></tr>
+            <tr><td>Convert currencies</td><td>Base currency + public exchange rates</td><td>Contract</td></tr>
+            <tr><td>Operate your paid subscription</td><td>Purchase/subscription status</td><td>Contract</td></tr>
+            <tr><td>Send renewal reminders and notifications you enabled</td><td>Push token, tracked subscriptions</td><td>Consent (OS permission)</td></tr>
+            <tr><td>Fix crashes, keep the service reliable</td><td>Crash reports, server logs</td><td>Legitimate interests</td></tr>
+            <tr><td>Understand how the product is used and improve it</td><td>Analytics events</td><td>Legitimate interests</td></tr>
+            <tr><td>Prevent abuse and control AI costs</td><td>Per-account rate-limit counters, AI-run log</td><td>Legitimate interests</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="margin-top: 18px;">Under the DPDP Act, we process your data for these stated purposes based on the consent you give when you create an account after seeing the notice at sign-in, and as necessary to provide the service you asked for. You can withdraw consent at any time by deleting your account (Section 7).</p>
+      <div class="callout">
+        <p>We do not sell your data, share it for third-party advertising, or use your data to train AI models.</p>
+      </div>
+    </section>
+
+    <section id="ai">
+      <h2><span class="no">03</span>AI processing</h2>
+      <p>Plenty’s core feature is AI-powered expense capture. Here is exactly what is sent to <strong>Google Gemini</strong> (Google’s AI API), and when:</p>
+      <ul>
+        <li>When you log an expense by <strong>typing or speaking</strong>, the text or transcript is sent to Gemini to be converted into a structured expense record.</li>
+        <li>When you <strong>scan a receipt</strong>, the compressed, EXIF-stripped image is sent to Gemini to extract the expense details.</li>
+        <li>To write your <strong>spending insight</strong>, aggregated statistics about your own spending (totals, categories, patterns) are sent — not your raw expense history.</li>
+      </ul>
+      <p>These requests include <strong>no name, email address, or account identifier</strong>. We do not use your data to train AI models. AI output can be wrong — you can review, edit, or delete every captured expense, and our <a href="terms.html#ai">Terms</a> explain why AI output is not financial advice.</p>
+    </section>
+
+    <section id="processors">
+      <h2><span class="no">04</span>Who processes your data for us</h2>
+      <p>We share personal data only with the processors below, only to run Plenty:</p>
+      <div class="tbl" role="region" aria-label="Third-party processors" tabindex="0">
+        <table>
+          <thead>
+            <tr><th>Service</th><th>Purpose</th><th>Data shared</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><strong><a href="https://supabase.com/privacy">Supabase</a></strong></td><td>Authentication, database, receipt storage</td><td>Account identity, profile, all expense data, receipt images, push tokens</td></tr>
+            <tr><td><strong><a href="https://railway.com/legal/privacy">Railway</a></strong></td><td>Hosts our API and background workers</td><td>All data passing through our API</td></tr>
+            <tr><td><strong><a href="https://policies.google.com/privacy">Google (Gemini API)</a></strong></td><td>AI expense parsing and insight generation</td><td>Input text/transcripts, receipt images, aggregated spending statistics — no account identifiers</td></tr>
+            <tr><td><strong><a href="https://policies.google.com/privacy">Google (Sign-In, Play Billing, device speech service)</a></strong></td><td>Sign-in, payments, speech-to-text</td><td>Identity token; purchases (handled by Google); voice audio per your device settings</td></tr>
+            <tr><td><strong><a href="https://www.revenuecat.com/privacy">RevenueCat</a></strong></td><td>Subscription management</td><td>Account ID, purchase and subscription status</td></tr>
+            <tr><td><strong><a href="https://posthog.com/privacy">PostHog</a></strong></td><td>Product analytics, feature flags</td><td>Account ID, product events (no expense content)</td></tr>
+            <tr><td><strong><a href="https://sentry.io/privacy/">Sentry</a></strong></td><td>Crash/error reporting (app + server)</td><td>Redacted diagnostic data</td></tr>
+            <tr><td><strong><a href="https://betterstack.com/privacy">Better Stack (Logtail)</a></strong></td><td>Server log storage</td><td>Redacted server logs</td></tr>
+            <tr><td><strong><a href="https://expo.dev/privacy">Expo</a></strong></td><td>Push notification delivery; app update delivery</td><td>Push token; notification content (e.g. “Netflix renews tomorrow — INR 649.00”); update requests from your device</td></tr>
+            <tr><td><strong>Open Exchange Rates</strong></td><td>Daily currency rates</td><td>None of your personal data</td></tr>
+            <tr><td><strong>Brandfetch</strong></td><td>Merchant logo lookup</td><td>Merchant names from our shared vendor catalogue (not linked to you); your device fetches logo images from Brandfetch’s CDN, which sees your IP</td></tr>
+            <tr><td><strong>FormSubmit</strong></td><td>Website waitlist email delivery</td><td>Waitlist email address</td></tr>
+            <tr><td><strong><a href="https://www.apple.com/legal/privacy/">Apple</a></strong> (iOS, when available)</td><td>Sign in with Apple; speech recognition</td><td>Identity token; voice audio per your device settings</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="regions">
+      <h2><span class="no">05</span>Where your data is processed</h2>
+      <p>Our providers may process data outside your country, including in the United States and other regions where they operate. Where GDPR applies, cross-border transfers rely on adequacy decisions or standard contractual clauses offered by these providers.</p>
+    </section>
+
+    <section id="retention">
+      <h2><span class="no">06</span>How long we keep data</h2>
+      <ul>
+        <li><strong>Expenses:</strong> until you delete them; a deleted expense is retained (hidden) for 90 days, then permanently erased together with its receipt image.</li>
+        <li><strong>Receipt photos:</strong> as long as the expense they belong to; abandoned uploads are purged automatically.</li>
+        <li><strong>Account, profile, tracked subscriptions:</strong> life of the account.</li>
+        <li><strong>AI-run logs:</strong> content scrubbed and unlinked from you when your account is deleted; anonymous usage and cost figures retained.</li>
+        <li><strong>Analytics, crash reports, server logs:</strong> per each provider’s retention settings.</li>
+      </ul>
+    </section>
+
+    <section id="rights">
+      <h2><span class="no">07</span>Your rights and controls</h2>
+      <p>Built into the app (Profile tab):</p>
+      <ul>
+        <li><strong>Export your data</strong> — download your full expense history as a JSON file (data portability).</li>
+        <li><strong>Correct your data</strong> — edit any expense; change your display name, language, and other profile fields.</li>
+        <li><strong>Clear your data</strong> — permanently wipe all expenses, tracked subscriptions, and insights while keeping your account and paid plan.</li>
+        <li><strong>Delete your account</strong> — permanently deletes your account, profile, expenses, subscriptions, insights, spending signals, entitlement record, and push tokens, and frees your email for future sign-up. Receipt images are removed by a scheduled cleanup within about one week. <strong>Deleting your account does not cancel your Google Play subscription</strong> — cancel that in Google Play (Play Store → Payments &amp; subscriptions → Subscriptions).</li>
+        <li><strong>Notifications</strong> — toggle off in Profile; this deletes your device’s push token from our servers. You can also revoke camera, photo, and microphone permissions in your OS settings at any time.</li>
+      </ul>
+      <p>You can also email <a href="mailto:arsudesandip4@gmail.com">arsudesandip4@gmail.com</a> to exercise your rights of access, correction, erasure, restriction, portability, and objection (GDPR), or access, correction, erasure, grievance redressal, and nomination (DPDP Act). We respond within the timelines the applicable law requires. If you are unsatisfied, you may complain to your local data protection authority (EU/EEA/UK) or the Data Protection Board of India.</p>
+      <!-- TODO: add the grievance officer's name here once the legal name is finalised (DPDP Act expects a named contact). -->
+      <p><strong>Grievance redressal (DPDP Act):</strong> write to <a href="mailto:arsudesandip4@gmail.com?subject=Grievance">arsudesandip4@gmail.com</a> with the subject line “Grievance” — it goes directly to the operator of Plenty.</p>
+    </section>
+
+    <section id="security">
+      <h2><span class="no">08</span>Security</h2>
+      <ul>
+        <li>All traffic uses HTTPS/TLS.</li>
+        <li>Session tokens are stored in your device’s secure storage (Keychain / Android Keystore).</li>
+        <li>Every database row and receipt file is isolated to your account with row-level security; one account cannot read another’s data.</li>
+        <li>Receipt storage is a private bucket — there are no public links to your images.</li>
+        <li>Access tokens, cookies, and secrets are redacted from our server logs; analytics and crash reports are scrubbed of expense content by design.</li>
+      </ul>
+      <p>No system is perfectly secure. If a breach affects your personal data, we will notify you and the relevant authorities as required by law.</p>
+    </section>
+
+    <section id="children">
+      <h2><span class="no">09</span>Children</h2>
+      <p>Plenty is a financial product and is not directed at children. You must be at least 18 years old (or the age of majority where you live) to use Plenty. We do not knowingly process children’s data; if you believe a child has created an account, contact us and we will delete it.</p>
+    </section>
+
+    <section id="changes">
+      <h2><span class="no">10</span>Changes to this policy</h2>
+      <p>We will post updates here and change the effective date above. For material changes, we will notify you in the app or by email before they take effect.</p>
+    </section>
+
+    <section id="contact">
+      <h2><span class="no">11</span>Contact</h2>
+      <!-- TODO: replace with legal entity name and registered address once available. -->
+      <p>Plenty — operated by an independent software developer, India.<br />
+      Email: <a href="mailto:arsudesandip4@gmail.com">arsudesandip4@gmail.com</a></p>
+      <p style="margin-top: 14px;">See also: <a href="terms.html">Terms &amp; Conditions</a>.</p>
+    </section>
+
+  </main>
+
+  <footer class="site-foot">
+    <span>© 2026 Plenty · All rights reserved</span>
+    <div class="foot-right">
+      <a href="./">Home</a>
+      <a href="privacy.html" aria-current="page">Privacy</a>
+      <a href="terms.html">Terms</a>
+      <a href="mailto:arsudesandip4@gmail.com">arsudesandip4@gmail.com</a>
+    </div>
+  </footer>
+
+</div>
+
+</body>
+</html>
