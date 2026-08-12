@@ -444,35 +444,6 @@
     transform: rotate(7deg);
   }
 
-  .screen-note {
-    position: absolute;
-    z-index: 4;
-    right: 12px;
-    bottom: 88px;
-    width: 206px;
-    padding: 13px 14px;
-    border: 1px solid var(--line);
-    border-radius: 8px;
-    background: rgba(255, 255, 255, 0.88);
-    box-shadow: 0 18px 46px rgba(11, 12, 16, 0.16);
-    backdrop-filter: blur(18px);
-  }
-
-  .screen-note p {
-    color: var(--muted);
-    font-size: 12px;
-    line-height: 1.4;
-    font-weight: 650;
-  }
-
-  .screen-note strong {
-    display: block;
-    margin-top: 3px;
-    color: var(--ink);
-    font-size: 22px;
-    line-height: 1.1;
-  }
-
   .signal-strip {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -905,21 +876,6 @@
       left: 54px;
     }
 
-    .screen-note {
-      right: 7px;
-      bottom: 42px;
-      width: 148px;
-      padding: 10px;
-    }
-
-    .screen-note p {
-      font-size: 10px;
-    }
-
-    .screen-note strong {
-      font-size: 17px;
-    }
-
     .signal-strip {
       grid-template-columns: 1fr;
       gap: 0;
@@ -1025,9 +981,6 @@
       height: 360px;
     }
 
-    .screen-note {
-      display: none;
-    }
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -1108,10 +1061,6 @@
             <figure class="phone phone-right">
               <img src="assets/plenty-analytics.jpg" alt="Plenty analytics screen showing monthly spending by category." width="690" height="1500" decoding="async" />
             </figure>
-            <div class="screen-note" aria-hidden="true">
-              <p>This month</p>
-              <strong>&#8377;26.8K tracked</strong>
-            </div>
           </div>
         </div>
       </section>
